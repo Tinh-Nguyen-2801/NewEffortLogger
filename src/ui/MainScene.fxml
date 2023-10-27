@@ -18,11 +18,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="706.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainSceneController">
   <tabs>
-    <Tab closable="false" text="Effort Console">
+    <Tab fx:id="tabEC" closable="false" text="Effort Console">
          <content>
-            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0">
+            <GridPane>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -51,7 +51,7 @@
                               <Insets left="30.0" />
                            </GridPane.margin>
                         </Label>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="160.0" text="Start an Activity" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                        <Button fx:id="btnStartEC" mnemonicParsing="false" prefHeight="35.0" prefWidth="160.0" text="Start an Activity" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -86,7 +86,7 @@
                                     <Insets left="45.0" />
                                  </FlowPane.margin>
                               </Label>
-                              <ComboBox prefHeight="25.0" prefWidth="180.0">
+                              <ComboBox fx:id="cmbProjectEC" prefHeight="25.0" prefWidth="180.0">
                                  <FlowPane.margin>
                                     <Insets left="10.0" />
                                  </FlowPane.margin>
@@ -99,7 +99,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <ComboBox prefHeight="25.0" prefWidth="238.0">
+                              <ComboBox fx:id="cmbStepEC" prefHeight="25.0" prefWidth="238.0">
                                  <FlowPane.margin>
                                     <Insets left="20.0" />
                                  </FlowPane.margin>
@@ -116,12 +116,12 @@
                                     <Insets left="45.0" />
                                  </FlowPane.margin>
                               </Label>
-                              <ComboBox prefHeight="25.0" prefWidth="180.0">
+                              <ComboBox fx:id="cmbCategoryEC" prefHeight="25.0" prefWidth="180.0">
                                  <FlowPane.margin>
                                     <Insets left="10.0" />
                                  </FlowPane.margin>
                               </ComboBox>
-                              <ComboBox prefHeight="25.0" prefWidth="303.0">
+                              <ComboBox fx:id="cmbDetailEC" prefHeight="25.0" prefWidth="303.0">
                                  <FlowPane.margin>
                                     <Insets left="20.0" />
                                  </FlowPane.margin>
@@ -148,12 +148,12 @@
                               <Insets left="30.0" />
                            </GridPane.margin>
                         </Label>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="160.0" text="Stop this Activity" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                        <Button fx:id="btnStopEC" mnemonicParsing="false" prefHeight="35.0" prefWidth="160.0" text="Stop this Activity" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Button>
-                        <Label style="-fx-font-weight: bold;" text="Status" GridPane.halignment="CENTER">
+                        <Label fx:id="lblStatusEC" style="-fx-font-weight: bold;" text="Status" GridPane.halignment="CENTER">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -189,22 +189,22 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="139.0" text="Effort Log Editor" GridPane.halignment="CENTER">
+                              <Button fx:id="btnEditEC" mnemonicParsing="false" prefHeight="35.0" prefWidth="139.0" text="Effort Log Editor" GridPane.halignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="145.0" text="Defect Log Console" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                              <Button fx:id="btnDefectEC" mnemonicParsing="false" prefHeight="35.0" prefWidth="145.0" text="Defect Log Console" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="148.0" text="Definitions" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                              <Button fx:id="btnDefEC" mnemonicParsing="false" prefHeight="35.0" prefWidth="148.0" text="Definitions" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="159.0" text="Effort and Defect Logs" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                              <Button fx:id="btnLogsEC" mnemonicParsing="false" prefHeight="35.0" prefWidth="159.0" text="Effort and Defect Logs" GridPane.columnIndex="3" GridPane.halignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -227,7 +227,7 @@
                               <Font size="26.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="28.0" prefWidth="562.0" style="-fx-background-color: #ff0000;" text="Clock is stopped" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                        <Label fx:id="lblClockEC" alignment="CENTER" contentDisplay="CENTER" prefHeight="28.0" prefWidth="562.0" style="-fx-background-color: #ff0000;" text="Clock is stopped" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -238,9 +238,9 @@
             </GridPane>
          </content>
     </Tab>
-    <Tab closable="false" text="Effort Log Editor">
+    <Tab fx:id="tabEditEL" closable="false" text="Effort Log Editor">
          <content>
-            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0">
+            <GridPane>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -270,7 +270,7 @@
                               <Insets left="15.0" />
                            </GridPane.margin>
                         </Label>
-                        <ComboBox prefHeight="25.0" prefWidth="621.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="cmbLogsEdit" prefHeight="25.0" prefWidth="621.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                         <Label prefHeight="20.0" prefWidth="651.0" text="nn. yyyy-mm-dd (hh:mm:ss-hh:mm:ss) &lt;Life Cycle Step&gt;; &lt;Effort Category&gt;; &lt;Details&gt;" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                            <font>
                               <Font size="14.0" />
@@ -298,7 +298,7 @@
                                     <Insets left="45.0" />
                                  </FlowPane.margin>
                               </Label>
-                              <TextField prefHeight="25.0" prefWidth="125.0" promptText="yyyy-mm-dd">
+                              <TextField fx:id="txtDateEdit" prefHeight="25.0" prefWidth="125.0" promptText="yyyy-mm-dd">
                                  <FlowPane.margin>
                                     <Insets left="10.0" />
                                  </FlowPane.margin>
@@ -311,7 +311,7 @@
                                     <Insets left="10.0" />
                                  </FlowPane.margin>
                               </Label>
-                              <TextField promptText="hh:mm:ss">
+                              <TextField fx:id="txtStartEdit" promptText="hh:mm:ss">
                                  <FlowPane.margin>
                                     <Insets left="10.0" />
                                  </FlowPane.margin>
@@ -324,7 +324,7 @@
                                     <Insets left="10.0" />
                                  </FlowPane.margin>
                               </Label>
-                              <TextField promptText="hh:mm:ss">
+                              <TextField fx:id="txtStopEdit" promptText="hh:mm:ss">
                                  <FlowPane.margin>
                                     <Insets left="10.0" />
                                  </FlowPane.margin>
@@ -341,7 +341,7 @@
                                     <Insets left="45.0" />
                                  </FlowPane.margin>
                               </Label>
-                              <ComboBox prefHeight="25.0" prefWidth="180.0">
+                              <ComboBox fx:id="cmbStepEdit" prefHeight="25.0" prefWidth="180.0">
                                  <FlowPane.margin>
                                     <Insets left="10.0" />
                                  </FlowPane.margin>
@@ -387,19 +387,19 @@
                                     <Insets left="45.0" />
                                  </FlowPane.margin>
                               </Label>
-                              <ComboBox prefHeight="25.0" prefWidth="180.0">
+                              <ComboBox fx:id="cmbCategoryEdit" prefHeight="25.0" prefWidth="180.0">
                                  <FlowPane.margin>
                                     <Insets left="10.0" />
                                  </FlowPane.margin>
                               </ComboBox>
-                              <ComboBox prefHeight="25.0" prefWidth="307.0">
+                              <ComboBox fx:id="cmbDetailEdit" prefHeight="25.0" prefWidth="307.0">
                                  <FlowPane.margin>
                                     <Insets left="20.0" />
                                  </FlowPane.margin>
                               </ComboBox>
                            </children>
                         </FlowPane>
-                        <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="195.0" text="Update This Entry" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Button fx:id="btnUpdateEdit" mnemonicParsing="false" prefHeight="23.0" prefWidth="195.0" text="Update This Entry" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -412,7 +412,7 @@
                               <Insets left="15.0" />
                            </GridPane.margin>
                         </Label>
-                        <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="195.0" text="Delete This Entry" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Button fx:id="btnDeleteEdit" mnemonicParsing="false" prefHeight="23.0" prefWidth="195.0" text="Delete This Entry" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -438,12 +438,12 @@
                               <Insets left="15.0" />
                            </GridPane.margin>
                         </Label>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="139.0" text="Split Current Entry" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                        <Button fx:id="btnSplitEdit" mnemonicParsing="false" prefHeight="35.0" prefWidth="139.0" text="Split Current Entry" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="208.0" text="Back to Effort Log Console" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                        <Button fx:id="txtECEdit" mnemonicParsing="false" prefHeight="33.0" prefWidth="208.0" text="Back to Effort Log Console" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -484,19 +484,19 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="195.0" text="Clear This Effort Log" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                        <Button fx:id="btnClearEdit" mnemonicParsing="false" prefHeight="23.0" prefWidth="195.0" text="Clear This Effort Log" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Button>
                         <FlowPane prefHeight="200.0" prefWidth="288.0" GridPane.rowIndex="2">
                            <children>
-                              <ComboBox prefHeight="25.0" prefWidth="191.0">
+                              <ComboBox fx:id="cmbProjectEdit" prefHeight="25.0" prefWidth="191.0">
                                  <FlowPane.margin>
                                     <Insets left="20.0" />
                                  </FlowPane.margin>
                               </ComboBox>
-                              <Label text="Counter">
+                              <Label fx:id="lblCounterEdit" text="Counter">
                                  <FlowPane.margin>
                                     <Insets left="30.0" />
                                  </FlowPane.margin>
@@ -512,9 +512,9 @@
             </GridPane>
          </content>
     </Tab>
-      <Tab closable="false" text="Defect Console">
+      <Tab fx:id="tabDefect" closable="false" text="Defect Console">
          <content>
-            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0">
+            <GridPane>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -553,12 +553,12 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <ComboBox prefHeight="25.0" prefWidth="230.0">
+                              <ComboBox fx:id="cmbEntryDC" prefHeight="25.0" prefWidth="230.0">
                                  <GridPane.margin>
                                     <Insets left="20.0" />
                                  </GridPane.margin>
                               </ComboBox>
-                              <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="195.0" text="Clear This Defect Log" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                              <Button fx:id="btnCreateDC" mnemonicParsing="false" prefHeight="23.0" prefWidth="195.0" text="Create a New Defect" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -595,7 +595,7 @@
                                     <Insets left="45.0" />
                                  </FlowPane.margin>
                               </Label>
-                              <TextField editable="false" prefHeight="25.0" prefWidth="38.0" promptText="#">
+                              <TextField fx:id="txtNumDC" editable="false" prefHeight="25.0" prefWidth="38.0" promptText="#">
                                  <FlowPane.margin>
                                     <Insets left="10.0" />
                                  </FlowPane.margin>
@@ -608,7 +608,7 @@
                                     <Insets left="10.0" />
                                  </FlowPane.margin>
                               </Label>
-                              <TextField prefHeight="25.0" prefWidth="135.0" promptText="#">
+                              <TextField fx:id="txtNameDC" prefHeight="25.0" prefWidth="135.0" promptText="#">
                                  <FlowPane.margin>
                                     <Insets left="20.0" />
                                  </FlowPane.margin>
@@ -621,7 +621,7 @@
                                     <Insets left="10.0" />
                                  </FlowPane.margin>
                               </Label>
-                              <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="195.0" text="Open">
+                              <Button fx:id="btnOpenDC" mnemonicParsing="false" prefHeight="23.0" prefWidth="195.0" text="Open">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -657,9 +657,9 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <ComboBox prefHeight="25.0" prefWidth="204.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <ComboBox prefHeight="25.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <ComboBox prefHeight="25.0" prefWidth="209.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cmbInjectDC" prefHeight="25.0" prefWidth="204.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="btnRemoveDC" prefHeight="25.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="btnCateDC" prefHeight="25.0" prefWidth="209.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
                      </children>
@@ -674,7 +674,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2">
+                        <TextArea fx:id="txtSymptomDC" prefHeight="200.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2">
                            <GridPane.margin>
                               <Insets left="20.0" />
                            </GridPane.margin>
@@ -709,22 +709,22 @@
                               <Insets left="15.0" />
                            </GridPane.margin>
                         </Label>
-                        <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="188.0" text="Update Current Defect" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                        <Button fx:id="btnUpdateDC" mnemonicParsing="false" prefHeight="33.0" prefWidth="188.0" text="Update Current Defect" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="188.0" text="Back to Effort Log Console" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                        <Button fx:id="btnECDC" mnemonicParsing="false" prefHeight="33.0" prefWidth="188.0" text="Back to Effort Log Console" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="184.0" text="Delete Current Defect" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                        <Button fx:id="btnDeleteDC" mnemonicParsing="false" prefHeight="33.0" prefWidth="184.0" text="Delete Current Defect" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Label style="-fx-font-weight: bold;" text="Save status" GridPane.halignment="CENTER">
+                        <Label fx:id="lblStatusDC" style="-fx-font-weight: bold;" text="Save status" GridPane.halignment="CENTER">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -734,12 +734,12 @@
                         </Label>
                         <FlowPane alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="381.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER">
                            <children>
-                              <Label style="-fx-font-weight: bold;" text="Name">
+                              <Label style="-fx-font-weight: bold;" text="Fix">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <ComboBox prefHeight="25.0" prefWidth="329.0">
+                              <ComboBox fx:id="cmbFixDC" prefHeight="25.0" prefWidth="329.0">
                                  <FlowPane.margin>
                                     <Insets left="20.0" />
                                  </FlowPane.margin>
@@ -777,19 +777,19 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="195.0" text="Clear This Defect Log" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                        <Button fx:id="btnClearDC" mnemonicParsing="false" prefHeight="23.0" prefWidth="195.0" text="Clear This Defect Log" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Button>
                         <FlowPane prefHeight="200.0" prefWidth="288.0" GridPane.rowIndex="2">
                            <children>
-                              <ComboBox prefHeight="25.0" prefWidth="230.0">
+                              <ComboBox fx:id="cmbProjectDC" prefHeight="25.0" prefWidth="230.0">
                                  <FlowPane.margin>
                                     <Insets left="20.0" />
                                  </FlowPane.margin>
                               </ComboBox>
-                              <Label text="Counter">
+                              <Label fx:id="lblCounterDC" text="Counter">
                                  <FlowPane.margin>
                                     <Insets left="30.0" />
                                  </FlowPane.margin>
@@ -804,13 +804,13 @@
                </children>
             </GridPane>
          </content></Tab>
-      <Tab closable="false" text="Effort Log">
+      <Tab fx:id="tabEL" closable="false" text="Effort Log">
          <content>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
+            <BorderPane>
                <center>
                   <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <content>
-                        <TableView prefHeight="450.0" prefWidth="689.0">
+                        <TableView fx:id="tblEffortLog" prefHeight="450.0" prefWidth="689.0">
                           <columns>
                             <TableColumn prefWidth="53.0" text="Number" />
                             <TableColumn minWidth="7.0" prefWidth="89.0" text="Date" />
@@ -849,19 +849,19 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ComboBox prefHeight="25.0" prefWidth="228.0" promptText="Choose project to display logs" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                        <ComboBox fx:id="cmbProjectEL" prefHeight="25.0" prefWidth="228.0" promptText="Choose project to display logs" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
                      </children>
                   </GridPane>
                </top>
             </BorderPane>
          </content></Tab>
-      <Tab closable="false" text="Defect Log">
+      <Tab fx:id="tabDL" closable="false" text="Defect Log">
          <content>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
+            <BorderPane>
                <center>
                   <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <content>
-                        <TableView prefHeight="450.0" prefWidth="689.0">
+                        <TableView fx:id="tblDefectLog" prefHeight="450.0" prefWidth="689.0">
                            <columns>
                               <TableColumn prefWidth="53.0" text="Number" />
                               <TableColumn minWidth="7.0" prefWidth="89.0" text="Name" />
@@ -900,25 +900,25 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ComboBox prefHeight="25.0" prefWidth="228.0" promptText="Choose project to display logs" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                        <ComboBox fx:id="cmbProjectDL" prefHeight="25.0" prefWidth="228.0" promptText="Choose project to display logs" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
                      </children>
                   </GridPane>
                </top>
             </BorderPane>
          </content></Tab>
-      <Tab closable="false" text="Definitions">
+      <Tab fx:id="tabDef" closable="false" text="Definitions">
          <content>
-            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Projects" />
-                <Tab text="Life Cycles" />
-                  <Tab text="Plans" />
-                  <Tab text="Deliverable" />
-                  <Tab text="Interuption" />
-                  <Tab text="Defect Category" />
+                <Tab fx:id="tabProject" text="Projects" />
+                <Tab fx:id="tabCycle" text="Life Cycles" />
+                  <Tab fx:id="tabPlan" text="Plans" />
+                  <Tab fx:id="tabDeli" text="Deliverable" />
+                  <Tab fx:id="tabInterrupt" text="Interuption" />
+                  <Tab fx:id="tabDefectCate" text="Defect Category" />
               </tabs>
             </TabPane>
          </content></Tab>
-      <Tab closable="false" text="Planning Poker" />
+      <Tab fx:id="tabPlan" closable="false" text="Planning Poker" />
   </tabs>
 </TabPane>

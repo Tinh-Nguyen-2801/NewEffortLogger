@@ -55,7 +55,7 @@ public class LoginController {
 	private void validateLoginInfor() {
 		// TODO Auto-generated method stub
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/ui/EffortLoggerConsole.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/ui/MainScene.fxml"));
 			Scene scene = new Scene(root);
 			Stage effortLoggerStage = new Stage();
 			effortLoggerStage.setScene(scene);
