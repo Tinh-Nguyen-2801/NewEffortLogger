@@ -20,7 +20,7 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
-public class LoginController {
+public class LogInController {
 	private boolean showPass = false;
 	@FXML
 	private Hyperlink lblForgot;
@@ -39,6 +39,8 @@ public class LoginController {
 
 	@FXML
 	private Label lblWarning;
+	@FXML
+	private Label lblStatus;
 
 	@FXML
 	private PasswordField txtPassword;
@@ -53,7 +55,7 @@ public class LoginController {
 		} else if (event.getSource() == lblSignUp) {
 			signUpNewAccoutn();
 		} else if (event.getSource() == lblForgot) {
-			forgotPassword();
+			goToRecovery();
 		} else if (event.getSource() == btnPeek) {
 			toggleShowPassword();
 		}
@@ -76,8 +78,15 @@ public class LoginController {
 					String storedPass = line.split(",")[1];
 					if (toHexString(getSHA(password)).equals(storedPass)) {
 						grantAccess();
+					} else {
+						lblStatus.setText("Incorrect Password!");
+						lblStatus.setVisible(true);
 					}
 				}
+			}
+			if (!usernameFound) {
+				lblStatus.setText("Account not found!");
+				lblStatus.setVisible(true);
 			}
 			input.close();
 		} catch (Exception e) {
@@ -112,11 +121,21 @@ public class LoginController {
 	}
 
 	private void signUpNewAccoutn() {
-		// TODO Auto-generated method stub
-		System.out.println("To do: Sign up account!");
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("/ui/SignUpScreen.fxml"));
+			Scene scene = new Scene(root);
+			Stage effortLoggerStage = new Stage();
+			effortLoggerStage.setScene(scene);
+			effortLoggerStage.setTitle("Signing Up");
+			effortLoggerStage.show();
+			final Stage stage = (Stage) lblSignUp.getScene().getWindow();
+			stage.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
-	private void forgotPassword() {
+	private void goToRecovery() {
 		// TODO Auto-generated method stub
 		System.out.println("To do: Forgot password!");
 
@@ -135,6 +154,8 @@ public class LoginController {
 			effortLoggerStage.setScene(scene);
 			effortLoggerStage.setTitle("Effort Logger Login");
 			effortLoggerStage.show();
+			final Stage stage = (Stage) btnLogin.getScene().getWindow();
+			stage.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

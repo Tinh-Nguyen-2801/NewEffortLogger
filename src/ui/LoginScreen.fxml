@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="353.0" prefWidth="489.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="488.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LogInController">
    <children>
       <TextField fx:id="txtUsername" layoutX="186.0" layoutY="93.0" promptText="Enter your username">
          <font>
@@ -21,12 +21,12 @@
             <Font size="18.0" />
          </font>
       </PasswordField>
-      <Button fx:id="btnLogin" layoutX="188.0" layoutY="213.0" mnemonicParsing="false" onAction="#btnPressed" prefHeight="39.0" prefWidth="115.0" text="Login">
+      <Button fx:id="btnLogin" layoutX="188.0" layoutY="228.0" mnemonicParsing="false" onAction="#btnPressed" prefHeight="39.0" prefWidth="115.0" text="Login">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label layoutX="64.0" layoutY="99.0" text="Username">
+      <Label layoutX="64.0" layoutY="99.0" text="Username" textFill="#1b5994">
          <font>
             <Font size="18.0" />
          </font>
@@ -51,15 +51,20 @@
             </ImageView>
          </graphic>
       </Button>
-      <Hyperlink fx:id="lblSignUp" layoutX="140.0" layoutY="267.0" onAction="#btnPressed" text="New Employee? Sign Up!">
+      <Hyperlink fx:id="lblSignUp" layoutX="140.0" layoutY="289.0" onAction="#btnPressed" text="New Employee? Sign Up!">
          <font>
             <Font size="18.0" />
          </font>
       </Hyperlink>
-      <Hyperlink fx:id="lblForgot" layoutX="168.0" layoutY="302.0" onAction="#btnPressed" text="Forgot password?">
+      <Hyperlink fx:id="lblForgot" layoutX="169.0" layoutY="324.0" onAction="#btnPressed" text="Forgot password?">
          <font>
             <Font size="18.0" />
          </font>
       </Hyperlink>
+      <Label fx:id="lblStatus" layoutX="221.0" layoutY="191.0" text="Status" textFill="RED" visible="false">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
