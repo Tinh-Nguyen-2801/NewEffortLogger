@@ -1,15 +1,21 @@
 package controllers;
 
-import java.awt.image.DataBufferDouble;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Scanner;
 
+import helper.GeneralHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -18,9 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import model.StatusMessage;
 
 public class SignUpController {
 
@@ -103,12 +107,53 @@ public class SignUpController {
 		}
 	}
 
+	@FXML
+	void checkUsername(KeyEvent event) {
+
+	}
+
+	/**
+	 * Validate the sign up Info
+	 * 
+	 * @param input string
+	 * @return byte array of the string
+	 */
 	private void validateSignUpInfo() {
 		boolean statusUser = validateUsername();
 		boolean statusPass = validatePassword();
 		boolean statusInfo = validateUserInfo();
 		if (statusUser && statusPass && statusInfo) {
-			// TODO: sign up for new user
+			String username = txtUsername.getText().trim();
+			String pass = txtPassword.getText().trim();
+			String employeeID = txtEmployeeID.getText().trim();
+			FileWriter writer = null;
+			try {
+				String filePath = new File("").getAbsolutePath();
+				File file = new File(filePath + "/src/data/accountList.txt");
+				writer = new FileWriter(file, true);
+				GeneralHelper hp = new GeneralHelper();
+				String line = "\n" + username + "," + hp.generalHelp(pass) + ","
+						+ employeeID;
+				writer.write(line);
+				writer.close();
+				Alert alert = new Alert(AlertType.INFORMATION, "Sign Up Sucessfully!",
+						ButtonType.YES);
+				alert.showAndWait();
+
+				if (alert.getResult() == ButtonType.YES) {
+					backToLoginScreen();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (writer != null) {
+					try {
+						writer.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 		}
 	}
 
@@ -129,7 +174,7 @@ public class SignUpController {
 			Scanner input = null;
 			try {
 				String filePath = new File("").getAbsolutePath();
-				File file = new File(filePath + "/src/data/temporary.txt");
+				File file = new File(filePath + "/src/data/accountList.txt");
 				input = new Scanner(file);
 				boolean userFound = false;
 				while (input.hasNextLine() && !userFound) {
@@ -168,74 +213,116 @@ public class SignUpController {
 			lblSttPass.setText("Password Length: 6 to 16");
 		} else if (!pass.matches(passPattern)) {
 			lblSttPass.setText("Contains: alphabet letters, digits, _, ., !, or ?");
-		} else if (!passCf.equals(pass)) {
-			lblSttPassCf.setText("Confirmed password does not match!");
 		} else {
-			result = true;
-			lblSttPass.setText("Valid Password!");
-			lblSttPassCf.setText("Password matches!");
+			if (passCf.equals("")) {
+				lblSttPassCf.setText("Required Field!");
+			} else if (!passCf.equals(pass)) {
+				lblSttPassCf.setText("Confirmed password does not match!");
+			} else {
+				lblSttPassCf.setText("Password matches!");
+				result = true;
+			}
 		}
-		lblSttPass.setVisible(true);
-		lblSttPassCf.setVisible(true);
 		if (result) {
 			lblSttPass.setTextFill(Color.GREEN);
 			lblSttPassCf.setTextFill(Color.GREEN);
 		}
+		lblSttPass.setVisible(true);
+		lblSttPassCf.setVisible(true);
 		return result;
 	}
 
 	private boolean validateUserInfo() {
-		boolean result = false;
+		boolean result = true;
 		String firstName = txtFirstName.getText().trim();
 		String lastName = txtLastName.getText().trim();
-		String DOB = dateDOB.getValue().toString();
-		int year = dateDOB.getValue().getYear();
+
 		String employeeID = txtEmployeeID.getText().trim();
-		String namePattern = "^[a-zA-Z]$";
-		String IDPattern = "^[0-9]$";
+		String namePattern = "^[a-zA-Z]{0,20}$";
+		String IDPattern = "^[0-9]{0,20}$";
+
 		if (firstName.equals("")) {
 			lblSttFirst.setText("Required Field!");
+			lblSttFirst.setTextFill(Color.RED);
+			result = false;
 		} else if (!firstName.matches(namePattern)) {
 			lblSttFirst.setText("Invalid First Name");
-		} else if (lastName.equals("")) {
+			lblSttFirst.setTextFill(Color.RED);
+			result = false;
+		}
+		lblSttFirst.setVisible(true);
+
+		if (lastName.equals("")) {
 			lblSttLast.setText("Required Field!");
+			lblSttLast.setTextFill(Color.RED);
+			result = false;
 		} else if (!lastName.matches(namePattern)) {
 			lblSttLast.setText("Invalid Last Name");
-		} else if (year > 2005) {
-			lblSttDOB.setText("Invalid Year!");
-		} else if (employeeID.equals("")) {
+			lblSttLast.setTextFill(Color.RED);
+			result = false;
+		}
+		lblSttLast.setVisible(true);
+
+		if (employeeID.equals("")) {
 			lblSttID.setText("Required Field!");
-		} else if (employeeID.matches(IDPattern)) {
+			lblSttID.setTextFill(Color.RED);
+			result = false;
+		} else if (!employeeID.matches(IDPattern)) {
 			lblSttID.setText("Invalid ID");
-		} else {
-			String line = "";
-			Scanner input = null;
-			try {
-				String filePath = new File("").getAbsolutePath();
-				File file = new File(filePath + "/src/data/employeeList.txt");
-				input = new Scanner(file);
-				boolean IDFound = false;
-				while (input.hasNextLine() && !IDFound) {
-					line = input.nextLine();
-					if (line.contains(employeeID)) {
-						String[] info = line.split(",");
-						if (employeeID.equals(info[0]) && firstName.equals(info[1]) && lastName.equals(info[2])
-								&& DOB.equals(info[3])) {
-							IDFound = true;
-							result = true;
-						}
-					}
-				}
-				input.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				if (input != null) {
-					input.close();
-				}
-			}
+			lblSttID.setTextFill(Color.RED);
+			result = false;
+		}
+		lblSttID.setVisible(true);
+
+		LocalDate date = dateDOB.getValue();
+		if (date == null) {
+			lblSttDOB.setText("Please pick a date of birth!");
+			lblSttDOB.setTextFill(Color.RED);
+			lblSttDOB.setVisible(true);
+			return false;
 		}
 
+		String DOB = dateDOB.getValue().toString();
+		int year = dateDOB.getValue().getYear();
+
+		if (year > 2005) {
+			lblSttDOB.setText("Invalid Year!");
+			lblSttDOB.setTextFill(Color.RED);
+			lblSttDOB.setVisible(true);
+			result = false;
+		}
+
+		String line = "";
+		Scanner input = null;
+		try {
+			String filePath = new File("").getAbsolutePath();
+			File file = new File(filePath + "/src/data/employeeList.txt");
+			input = new Scanner(file);
+			boolean IDFound = false;
+			while (input.hasNextLine() && !IDFound) {
+				line = input.nextLine();
+				if (line.contains(employeeID)) {
+					String[] info = line.split(",");
+					if (employeeID.equals(info[0]) && firstName.equals(info[1])
+							&& lastName.equals(info[2]) && DOB.equals(info[3])) {
+						IDFound = true;
+					}
+				}
+			}
+			if (!IDFound) {
+				lblSttID.setText("ID not found!");
+				lblSttID.setVisible(true);
+				lblSttID.setTextFill(Color.RED);
+				result = false;
+			}
+			input.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (input != null) {
+				input.close();
+			}
+		}
 		return result;
 	}
 
@@ -262,11 +349,6 @@ public class SignUpController {
 
 	private void toggleShowPassword() {
 		// TODO Auto-generated method stub
-
-	}
-
-	@FXML
-	void enterPressed(ActionEvent event) {
 
 	}
 

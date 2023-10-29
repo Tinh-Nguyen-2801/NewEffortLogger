@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -10,183 +11,191 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class MainSceneController {
+	@FXML
+	void clearEffortLog(ActionEvent event) {
 
-    @FXML
-    private ComboBox<?> btnCateDC;
+	}
 
-    @FXML
-    private Button btnClearDC;
+	@FXML
+	void backToECPage(ActionEvent event) {
+		tabEC.getContent().requestFocus();
+	}
 
-    @FXML
-    private Button btnClearEdit;
+	@FXML
+	private ComboBox<?> btnCateDC;
 
-    @FXML
-    private Button btnCreateDC;
+	@FXML
+	private Button btnClearDC;
 
-    @FXML
-    private Button btnDefEC;
+	@FXML
+	private Button btnClearEdit;
 
-    @FXML
-    private Button btnDefectEC;
+	@FXML
+	private Button btnCreateDC;
 
-    @FXML
-    private Button btnDeleteDC;
+	@FXML
+	private Button btnDefEC;
 
-    @FXML
-    private Button btnDeleteEdit;
+	@FXML
+	private Button btnDefectEC;
 
-    @FXML
-    private Button btnECDC;
+	@FXML
+	private Button btnDeleteDC;
 
-    @FXML
-    private Button btnEditEC;
+	@FXML
+	private Button btnDeleteEdit;
 
-    @FXML
-    private Button btnLogsEC;
+	@FXML
+	private Button btnECDC;
 
-    @FXML
-    private Button btnOpenDC;
+	@FXML
+	private Button btnEditEC;
 
-    @FXML
-    private ComboBox<?> btnRemoveDC;
+	@FXML
+	private Button btnLogsEC;
 
-    @FXML
-    private Button btnSplitEdit;
+	@FXML
+	private Button btnOpenDC;
 
-    @FXML
-    private Button btnStartEC;
+	@FXML
+	private ComboBox<?> btnRemoveDC;
 
-    @FXML
-    private Button btnStopEC;
+	@FXML
+	private Button btnSplitEdit;
 
-    @FXML
-    private Button btnUpdateDC;
+	@FXML
+	private Button btnStartEC;
 
-    @FXML
-    private Button btnUpdateEdit;
+	@FXML
+	private Button btnStopEC;
 
-    @FXML
-    private ComboBox<?> cmbCategoryEC;
+	@FXML
+	private Button btnUpdateDC;
 
-    @FXML
-    private ComboBox<?> cmbCategoryEdit;
+	@FXML
+	private Button btnUpdateEdit;
 
-    @FXML
-    private ComboBox<?> cmbDetailEC;
+	@FXML
+	private ComboBox<?> cmbCategoryEC;
 
-    @FXML
-    private ComboBox<?> cmbDetailEdit;
+	@FXML
+	private ComboBox<?> cmbCategoryEdit;
 
-    @FXML
-    private ComboBox<?> cmbEntryDC;
+	@FXML
+	private ComboBox<?> cmbDetailEC;
 
-    @FXML
-    private ComboBox<?> cmbFixDC;
+	@FXML
+	private ComboBox<?> cmbDetailEdit;
 
-    @FXML
-    private ComboBox<?> cmbInjectDC;
+	@FXML
+	private ComboBox<?> cmbEntryDC;
 
-    @FXML
-    private ComboBox<?> cmbLogsEdit;
+	@FXML
+	private ComboBox<?> cmbFixDC;
 
-    @FXML
-    private ComboBox<?> cmbProjectDC;
+	@FXML
+	private ComboBox<?> cmbInjectDC;
 
-    @FXML
-    private ComboBox<?> cmbProjectDL;
+	@FXML
+	private ComboBox<?> cmbLogsEdit;
 
-    @FXML
-    private ComboBox<?> cmbProjectEC;
+	@FXML
+	private ComboBox<?> cmbProjectDC;
 
-    @FXML
-    private ComboBox<?> cmbProjectEL;
+	@FXML
+	private ComboBox<?> cmbProjectDL;
 
-    @FXML
-    private ComboBox<?> cmbProjectEdit;
+	@FXML
+	private ComboBox<?> cmbProjectEC;
 
-    @FXML
-    private ComboBox<?> cmbStepEC;
+	@FXML
+	private ComboBox<?> cmbProjectEL;
 
-    @FXML
-    private ComboBox<?> cmbStepEdit;
+	@FXML
+	private ComboBox<?> cmbProjectEdit;
 
-    @FXML
-    private Label lblClockEC;
+	@FXML
+	private ComboBox<?> cmbStepEC;
 
-    @FXML
-    private Label lblCounterDC;
+	@FXML
+	private ComboBox<?> cmbStepEdit;
 
-    @FXML
-    private Label lblCounterEdit;
+	@FXML
+	private Label lblClockEC;
 
-    @FXML
-    private Label lblStatusDC;
+	@FXML
+	private Label lblCounterDC;
 
-    @FXML
-    private Label lblStatusEC;
+	@FXML
+	private Label lblCounterEdit;
 
-    @FXML
-    private Tab tabCycle;
+	@FXML
+	private Label lblStatusDC;
 
-    @FXML
-    private Tab tabDL;
+	@FXML
+	private Label lblStatusEC;
 
-    @FXML
-    private Tab tabDef;
+	@FXML
+	private Tab tabCycle;
 
-    @FXML
-    private Tab tabDefect;
+	@FXML
+	private Tab tabDL;
 
-    @FXML
-    private Tab tabDefectCate;
+	@FXML
+	private Tab tabDef;
 
-    @FXML
-    private Tab tabDeli;
+	@FXML
+	private Tab tabDefect;
 
-    @FXML
-    private Tab tabEC;
+	@FXML
+	private Tab tabDefectCate;
 
-    @FXML
-    private Tab tabEL;
+	@FXML
+	private Tab tabDeli;
 
-    @FXML
-    private Tab tabEditEL;
+	@FXML
+	private Tab tabEC;
 
-    @FXML
-    private Tab tabInterrupt;
+	@FXML
+	private Tab tabEL;
 
-    @FXML
-    private Tab tabPlan;
+	@FXML
+	private Tab tabEditEL;
 
-    @FXML
-    private Tab tabProject;
+	@FXML
+	private Tab tabInterrupt;
 
-    @FXML
-    private TableView<?> tblDefectLog;
+	@FXML
+	private Tab tabPlan;
 
-    @FXML
-    private TableView<?> tblEffortLog;
+	@FXML
+	private Tab tabProject;
 
-    @FXML
-    private TextField txtDateEdit;
+	@FXML
+	private TableView<?> tblDefectLog;
 
-    @FXML
-    private Button txtECEdit;
+	@FXML
+	private TableView<?> tblEffortLog;
 
-    @FXML
-    private TextField txtNameDC;
+	@FXML
+	private TextField txtDateEdit;
 
-    @FXML
-    private TextField txtNumDC;
+	@FXML
+	private Button txtECEdit;
 
-    @FXML
-    private TextField txtStartEdit;
+	@FXML
+	private TextField txtNameDC;
 
-    @FXML
-    private TextField txtStopEdit;
+	@FXML
+	private TextField txtNumDC;
 
-    @FXML
-    private TextArea txtSymptomDC;
+	@FXML
+	private TextField txtStartEdit;
+
+	@FXML
+	private TextField txtStopEdit;
+
+	@FXML
+	private TextArea txtSymptomDC;
 
 }
-

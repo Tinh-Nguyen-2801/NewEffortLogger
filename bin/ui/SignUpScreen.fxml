@@ -11,151 +11,147 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignUpController">
-   <children>
-      <AnchorPane layoutX="14.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="501.0">
-         <children>
-            <TextField fx:id="txtUsername" layoutX="206.0" layoutY="74.0" promptText="Enter your username">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </TextField>
-            <PasswordField fx:id="txtPassword" layoutX="206.0" layoutY="135.0" onAction="#enterPressed" onKeyReleased="#passwordKeyReleased" promptText="Enter your password">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </PasswordField>
-            <Button fx:id="btnSignUp" layoutX="196.0" layoutY="483.0" mnemonicParsing="false" onAction="#btnPressed" prefHeight="39.0" prefWidth="115.0" text="Sign Up">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Label layoutX="45.0" layoutY="80.0" text="Username">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="45.0" layoutY="142.0" text="Password">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="103.0" layoutY="22.0" text="Onboard to Effort Logger" textFill="#2e9de8">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblWarning" layoutX="187.0" layoutY="196.0" prefHeight="17.0" prefWidth="224.0" text="Warning" visible="false" />
-            <Button fx:id="btnPeek" layoutX="385.0" layoutY="141.0" mnemonicParsing="false" onAction="#btnPressed" opacity="0.5" prefHeight="25.0" prefWidth="24.0">
-               <graphic>
-                  <ImageView fx:id="imgPeek" fitHeight="23.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/show.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Hyperlink fx:id="lblLogIn" layoutX="108.0" layoutY="522.0" onAction="#btnPressed" text="Already in the team? Log In Here">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Hyperlink>
-            <Hyperlink fx:id="lblForgot" layoutX="167.0" layoutY="557.0" onAction="#btnPressed" text="Forgot password?">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Hyperlink>
-            <PasswordField fx:id="txtPasswordCfm" layoutX="206.0" layoutY="194.0" onAction="#enterPressed" onKeyReleased="#passwordKeyReleased" promptText="Enter your password">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </PasswordField>
-            <Label layoutX="45.0" layoutY="201.0" text="Confirm Password">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Button fx:id="btnPeek1" layoutX="385.0" layoutY="200.0" mnemonicParsing="false" onAction="#btnPressed" opacity="0.5" prefHeight="25.0" prefWidth="24.0">
-               <graphic>
-                  <ImageView fx:id="imgPeek1" fitHeight="23.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/show.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <TextField fx:id="txtFirstName" layoutX="206.0" layoutY="249.0" promptText="Enter your First Name">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </TextField>
-            <Label layoutX="45.0" layoutY="255.0" text="First Name">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtLastName" layoutX="206.0" layoutY="308.0" promptText="Enter your Last Name">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </TextField>
-            <Label layoutX="45.0" layoutY="314.0" text="Last Name">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtEmployeeID" layoutX="206.0" layoutY="411.0" promptText="Enter your Last Name">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </TextField>
-            <Label layoutX="45.0" layoutY="417.0" text="Employee ID">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="45.0" layoutY="366.0" text="DOB">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <DatePicker fx:id="dateDOB" layoutX="206.0" layoutY="367.0" />
-            <Label fx:id="lblSttID" layoutX="206.0" layoutY="450.0" text="Status" textFill="RED" visible="false">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblSttUser" layoutX="206.0" layoutY="115.0" text="StatusUername" textFill="RED" visible="false">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblSttPass" layoutX="206.0" layoutY="177.0" text="Status" textFill="RED" visible="false">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblSttPassCf" layoutX="206.0" layoutY="233.0" text="Status" textFill="RED" visible="false">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblSttFirst" layoutX="206.0" layoutY="288.0" text="Status" textFill="RED" visible="false">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblSttLast" layoutX="206.0" layoutY="347.0" text="Status" textFill="RED" visible="false">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblSttDOB" layoutX="206.0" layoutY="393.0" text="Status" textFill="RED" visible="false">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="501.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignUpController">
+	<children>
+		<TextField fx:id="txtUsername" layoutX="206.0" layoutY="74.0" onKeyTyped="#checkUsername" promptText="Enter your username">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</TextField>
+		<PasswordField fx:id="txtPassword" layoutX="206.0" layoutY="135.0" onKeyReleased="#passwordKeyReleased" promptText="Enter your password">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</PasswordField>
+		<PasswordField fx:id="txtPasswordCfm" layoutX="206.0" layoutY="194.0" onKeyReleased="#passwordKeyReleased" promptText="Enter your password">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</PasswordField>
+		<TextField fx:id="txtFirstName" layoutX="206.0" layoutY="249.0" promptText="Enter your First Name">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</TextField>
+		<TextField fx:id="txtLastName" layoutX="206.0" layoutY="308.0" promptText="Enter your Last Name">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</TextField>
+		<DatePicker fx:id="dateDOB" layoutX="206.0" layoutY="367.0" />
+		<TextField fx:id="txtEmployeeID" layoutX="206.0" layoutY="411.0" promptText="Enter your Last Name">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</TextField>
+		<Button fx:id="btnSignUp" layoutX="196.0" layoutY="483.0" mnemonicParsing="false" onAction="#btnPressed" prefHeight="39.0" prefWidth="115.0" text="Sign Up">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</Button>
+		<Hyperlink fx:id="lblLogIn" layoutX="108.0" layoutY="522.0" onAction="#btnPressed" text="Already in the team? Log In Here">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</Hyperlink>
+		<Hyperlink fx:id="lblForgot" layoutX="166.0" layoutY="557.0" onAction="#btnPressed" text="Forgot password?">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</Hyperlink>
+		<Label layoutX="45.0" layoutY="80.0" text="Username">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</Label>
+		<Label layoutX="45.0" layoutY="142.0" text="Password">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</Label>
+		<Label layoutX="103.0" layoutY="22.0" text="Onboard to Effort Logger" textFill="#2e9de8">
+			<font>
+				<Font size="25.0" />
+			</font>
+		</Label>
+		<Label fx:id="lblWarning" layoutX="187.0" layoutY="196.0" prefHeight="17.0" prefWidth="224.0" text="Warning" visible="false" />
+		<Button fx:id="btnPeek" layoutX="385.0" layoutY="141.0" mnemonicParsing="false" onAction="#btnPressed" opacity="0.5" prefHeight="25.0" prefWidth="24.0">
+			<graphic>
+				<ImageView fx:id="imgPeek" fitHeight="23.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@../images/show.png" />
+					</image>
+				</ImageView>
+			</graphic>
+		</Button>
+		<Label layoutX="45.0" layoutY="201.0" text="Confirm Password">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</Label>
+		<Button fx:id="btnPeek1" layoutX="385.0" layoutY="200.0" mnemonicParsing="false" onAction="#btnPressed" opacity="0.5" prefHeight="25.0" prefWidth="24.0">
+			<graphic>
+				<ImageView fx:id="imgPeek1" fitHeight="23.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@../images/show.png" />
+					</image>
+				</ImageView>
+			</graphic>
+		</Button>
+		<Label layoutX="45.0" layoutY="255.0" text="First Name">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</Label>
+		<Label layoutX="45.0" layoutY="314.0" text="Last Name">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</Label>
+		<Label layoutX="45.0" layoutY="417.0" text="Employee ID">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</Label>
+		<Label layoutX="45.0" layoutY="366.0" text="DOB">
+			<font>
+				<Font size="18.0" />
+			</font>
+		</Label>
+		<Label fx:id="lblSttID" layoutX="206.0" layoutY="450.0" text="Valid ID" textFill="RED" visible="false">
+			<font>
+				<Font size="13.0" />
+			</font>
+		</Label>
+		<Label fx:id="lblSttUser" layoutX="206.0" layoutY="115.0" text="Valid Username" textFill="RED" visible="false">
+			<font>
+				<Font size="13.0" />
+			</font>
+		</Label>
+		<Label fx:id="lblSttPass" layoutX="206.0" layoutY="177.0" text="Valid Password" textFill="RED" visible="false">
+			<font>
+				<Font size="13.0" />
+			</font>
+		</Label>
+		<Label fx:id="lblSttPassCf" layoutX="206.0" layoutY="233.0" text="" textFill="RED" visible="false">
+			<font>
+				<Font size="13.0" />
+			</font>
+		</Label>
+		<Label fx:id="lblSttFirst" layoutX="206.0" layoutY="288.0" text="Valid First Name" textFill="GREEN" visible="false">
+			<font>
+				<Font size="13.0" />
+			</font>
+		</Label>
+		<Label fx:id="lblSttLast" layoutX="206.0" layoutY="347.0" text="Valid Last Name" textFill="GREEN" visible="false">
+			<font>
+				<Font size="13.0" />
+			</font>
+		</Label>
+		<Label fx:id="lblSttDOB" layoutX="206.0" layoutY="393.0" text="Valid DOB" textFill="RED" visible="false">
+			<font>
+				<Font size="13.0" />
+			</font>
+		</Label>
+	</children>
 </AnchorPane>
