@@ -1,0 +1,32 @@
+1,Business Project;2,Development Project;
+1,Plans;2,Deliverables;3,Interruptions;4,Defect;5,Others
+1,Project Plan;2,Risk Management Plan;3,Conceptual Design Plan;4,Detailed Design Plan;5,Implementation Plan
+1,Conceptual Design;2,Detailed Design;3,Test Case;4,Solution;5,Reflection;6,Outline;7,Draft;8,Report;9,User Defined;10,Other
+1,Break;2,Phone;3,Teammate;4,Visitor;5,Other
+1,Not Specified;2,Documentation;3,Syntax;4,Build and Package;5,Assignment;6,Interface;7,Checking;8,Data;9,Function;10,System;100,Environment
+1,Problem Understanding,2,2,1
+2,Conceptual Design Plan,2,1,3
+3,Requirements,2,2,1
+4,Conceptual Design,2,2,1
+5,Conceptual Design Review,2,2,1
+6,Detailed Design Plan,2,1,4
+7,Detailed Design/Prototype,2,2,2
+8,Detailed Design Review,2,2,2
+9,Implementation Plan,2,1,5
+10,Test Case Generation,2,2,3
+11,Solution Specification,2,2,4
+12,Solution Review,2,2,4
+13,Solution Implementation,2,2,4
+14,Unit/System Test,2,2,4
+15,Reflection,2,2,4
+16,Repository Update,2,2,4
+17,Planning,1,1,1
+18,Information Gathering,1,2,1
+19,Information Understanding,1,2,1
+20,Verifying,1,2,1
+21,Outlining,1,2,6
+22,Drafting,1,2,7
+23,Finalizing,1,2,8
+24,Team Meeting,1,2,1
+25,Coach Meeting,1,2,1
+26,Stakeholder Meeting,1,2,1

@@ -176,7 +176,9 @@ public class LogInController {
 
 	@FXML
 	void enterPressed(ActionEvent event) {
-
+		if (event.getSource() == txtPassword || event.getSource() == txtUsername) {
+			validateLoginInfo();
+		}
 	}
 
 	@FXML

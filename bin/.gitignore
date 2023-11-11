@@ -1,4 +1,5 @@
+/model/
 /controllers/
-/data/
+/application/
 /ui/
-/helper/
+/data/
