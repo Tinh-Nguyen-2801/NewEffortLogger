@@ -43,9 +43,9 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label prefHeight="20.0" prefWidth="511.0" style="-fx-font-weight: bold;" text="1. When you start a new activity, press the &quot;Start an Activity&quot; Button." textAlignment="CENTER">
+                        <Label prefHeight="20.0" prefWidth="511.0" text="1. When you start a new activity, press the &quot;Start an Activity&quot; Button." textAlignment="CENTER">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="30.0" />
@@ -68,9 +68,9 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label style="-fx-font-weight: bold;" text="2. Select the project, life cycle step, effort category, and deliverable from the following lists:">
+                        <Label text="2. Select the project, life cycle step, effort category, and deliverable from the following lists:">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="30.0" />
@@ -78,7 +78,7 @@
                         </Label>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <children>
-                              <Label style="-fx-font-weight: bold;" text="Project:">
+                              <Label text="Project:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -86,12 +86,12 @@
                                     <Insets left="45.0" />
                                  </FlowPane.margin>
                               </Label>
-                              <ComboBox fx:id="cmbProjectEC" prefHeight="25.0" prefWidth="180.0">
+                              <ComboBox fx:id="cmbProjectEC" onAction="#selectPorjectEC" prefHeight="25.0" prefWidth="180.0">
                                  <FlowPane.margin>
                                     <Insets left="10.0" />
                                  </FlowPane.margin>
                               </ComboBox>
-                              <Label style="-fx-font-weight: bold;" text="Life Cycle Step:">
+                              <Label text="Life Cycle Step:">
                                  <FlowPane.margin>
                                     <Insets left="20.0" />
                                  </FlowPane.margin>
@@ -99,16 +99,16 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="cmbStepEC" prefHeight="25.0" prefWidth="238.0">
+                              <ComboBox fx:id="cmbStepEC" onAction="#selectPorjectEC" prefHeight="25.0" prefWidth="238.0">
                                  <FlowPane.margin>
                                     <Insets left="20.0" />
                                  </FlowPane.margin>
                               </ComboBox>
                            </children>
                         </FlowPane>
-                        <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                        <FlowPane id="boldLabel" prefHeight="200.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                            <children>
-                              <Label style="-fx-font-weight: bold;" text="Effort Category:">
+                              <Label fx:id="lblDefEC" text="Effort Category:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -116,12 +116,20 @@
                                     <Insets left="45.0" />
                                  </FlowPane.margin>
                               </Label>
-                              <ComboBox fx:id="cmbCategoryEC" prefHeight="25.0" prefWidth="180.0">
+                              <ComboBox fx:id="cmbCategoryEC" onAction="#selectPorjectEC" prefHeight="25.0" prefWidth="180.0">
                                  <FlowPane.margin>
                                     <Insets left="10.0" />
                                  </FlowPane.margin>
                               </ComboBox>
-                              <ComboBox fx:id="cmbDetailEC" prefHeight="25.0" prefWidth="303.0">
+                              <Label fx:id="lblDefD" text="Deliverable:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <FlowPane.margin>
+                                    <Insets left="20.0" />
+                                 </FlowPane.margin>
+                              </Label>
+                              <ComboBox fx:id="cmbDetailEC" prefHeight="26.0" prefWidth="252.0">
                                  <FlowPane.margin>
                                     <Insets left="20.0" />
                                  </FlowPane.margin>
@@ -140,9 +148,9 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label style="-fx-font-weight: bold;" text="3. Press The &quot;Stop this Activity&quot; to generate an effort log entry using the attributes above." GridPane.rowIndex="1">
+                        <Label text="3. Press The &quot;Stop this Activity&quot; to generate an effort log entry using the attributes above." GridPane.rowIndex="1">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="30.0" />
@@ -153,7 +161,7 @@
                               <Font size="16.0" />
                            </font>
                         </Button>
-                        <Label fx:id="lblStatusEC" style="-fx-font-weight: bold;" text="Status" GridPane.halignment="CENTER">
+                        <Label fx:id="lblStatusEC" text="Status" GridPane.halignment="CENTER">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -170,9 +178,9 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label style="-fx-font-weight: bold;" text="4. Unless you are done for the day, it is best to perform steps 1 and 2 above before resuming work.">
+                        <Label text="4. Unless you are done for the day, it is best to perform steps 1 and 2 above before resuming work.">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                            <GridPane.margin>
                               <Insets left="30.0" />
@@ -262,7 +270,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label prefHeight="20.0" prefWidth="651.0" style="-fx-font-weight: bold;" text="2.b. Select the Effort Log Entry to be modified and make it the Current Effort Log Entry.">
+                        <Label prefHeight="20.0" prefWidth="651.0" text="2.b. Select the Effort Log Entry to be modified and make it the Current Effort Log Entry.">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -290,7 +298,7 @@
                      <children>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <children>
-                              <Label style="-fx-font-weight: bold;" text="Date:">
+                              <Label text="Date:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -303,7 +311,7 @@
                                     <Insets left="10.0" />
                                  </FlowPane.margin>
                               </TextField>
-                              <Label style="-fx-font-weight: bold;" text="Start:">
+                              <Label text="Start:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -316,7 +324,7 @@
                                     <Insets left="10.0" />
                                  </FlowPane.margin>
                               </TextField>
-                              <Label style="-fx-font-weight: bold;" text="Stop:">
+                              <Label text="Stop:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -333,7 +341,7 @@
                         </FlowPane>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                            <children>
-                              <Label style="-fx-font-weight: bold;" text="LIfe Cycle Step:">
+                              <Label text="LIfe Cycle Step:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -348,7 +356,7 @@
                               </ComboBox>
                            </children>
                         </FlowPane>
-                        <Label prefHeight="20.0" prefWidth="651.0" style="-fx-font-weight: bold;" text="3.a. Modify the Current Effort Log Entry's attributes and press &quot;Update This Entry&quot; when finished.">
+                        <Label prefHeight="20.0" prefWidth="651.0" text="3.a. Modify the Current Effort Log Entry's attributes and press &quot;Update This Entry&quot; when finished.">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -369,7 +377,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label style="-fx-font-weight: bold;" text="These arrtributes have been saved." GridPane.rowIndex="1">
+                        <Label text="These arrtributes have been saved." GridPane.rowIndex="1">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -379,7 +387,7 @@
                         </Label>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2">
                            <children>
-                              <Label style="-fx-font-weight: bold;" text="Effort Category:">
+                              <Label text="Effort Category:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -404,7 +412,7 @@
                               <Font size="16.0" />
                            </font>
                         </Button>
-                        <Label prefHeight="20.0" prefWidth="169.0" style="-fx-font-weight: bold;" text="3.b. Delete current Entry" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+                        <Label prefHeight="20.0" prefWidth="169.0" text="3.b. Delete current Entry" GridPane.halignment="LEFT" GridPane.rowIndex="2">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -430,7 +438,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label style="-fx-font-weight: bold;" text="3.c. Split the Current Entry into two entries">
+                        <Label text="3.c. Split the Current Entry into two entries">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -443,12 +451,12 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="txtECEdit" mnemonicParsing="false" prefHeight="33.0" prefWidth="208.0" text="Back to Effort Log Console" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                        <Button fx:id="txtECEdit" mnemonicParsing="false" onAction="#backToECPage" prefHeight="33.0" prefWidth="208.0" text="Back to Effort Log Console" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Label style="-fx-font-weight: bold;" text="4. Back to Effort Log Console" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                        <Label text="4. Back to Effort Log Console" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -471,7 +479,7 @@
                               <Font size="26.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="20.0" prefWidth="330.0" style="-fx-font-weight: bold;" text="1. Select the Project in order to edit its Effort Log." textAlignment="CENTER" GridPane.rowIndex="1">
+                        <Label prefHeight="20.0" prefWidth="330.0" text="1. Select the Project in order to edit its Effort Log." textAlignment="CENTER" GridPane.rowIndex="1">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -479,12 +487,12 @@
                               <Insets left="15.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label prefHeight="20.0" prefWidth="225.0" style="-fx-font-weight: bold;" text="2.a. Clear this Project's Effort Log." textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                        <Label prefHeight="20.0" prefWidth="225.0" text="2.a. Clear this Project's Effort Log." textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnClearEdit" mnemonicParsing="false" prefHeight="23.0" prefWidth="195.0" text="Clear This Effort Log" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                        <Button fx:id="btnClearEdit" mnemonicParsing="false" onAction="#clearEffortLog" prefHeight="23.0" prefWidth="195.0" text="Clear This Effort Log" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -536,7 +544,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label prefHeight="20.0" prefWidth="651.0" style="-fx-font-weight: bold;" text="2.b. Select the Effort Log Entry to be modified and make it the Current Effort Log Entry.">
+                        <Label prefHeight="20.0" prefWidth="651.0" text="2.b. Select the Effort Log Entry to be modified and make it the Current Effort Log Entry.">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -565,7 +573,7 @@
                               </Button>
                            </children>
                         </GridPane>
-                        <Label prefHeight="20.0" prefWidth="651.0" style="-fx-font-weight: bold;" text="3. Define or update the following Current Defect attributes:" GridPane.rowIndex="2">
+                        <Label prefHeight="20.0" prefWidth="651.0" text="3. Define or update the following Current Defect attributes:" GridPane.rowIndex="2">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -587,7 +595,7 @@
                      <children>
                         <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.halignment="CENTER">
                            <children>
-                              <Label style="-fx-font-weight: bold;" text="Num">
+                              <Label text="Num">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -600,7 +608,7 @@
                                     <Insets left="10.0" />
                                  </FlowPane.margin>
                               </TextField>
-                              <Label style="-fx-font-weight: bold;" text="Name">
+                              <Label text="Name">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -613,7 +621,7 @@
                                     <Insets left="20.0" />
                                  </FlowPane.margin>
                               </TextField>
-                              <Label style="-fx-font-weight: bold;" text="Status">
+                              <Label text="Status">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -642,24 +650,24 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label prefHeight="20.0" prefWidth="135.0" style="-fx-font-weight: bold;" text="Step when Injected" textAlignment="CENTER" GridPane.halignment="CENTER">
+                              <Label prefHeight="20.0" prefWidth="135.0" text="Step when Injected" textAlignment="CENTER" GridPane.halignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="20.0" prefWidth="135.0" style="-fx-font-weight: bold;" text="Step when removed" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                              <Label prefHeight="20.0" prefWidth="135.0" text="Step when removed" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="20.0" prefWidth="135.0" style="-fx-font-weight: bold;" text="Defect Category" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                              <Label prefHeight="20.0" prefWidth="135.0" text="Defect Category" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
                               <ComboBox fx:id="cmbInjectDC" prefHeight="25.0" prefWidth="204.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <ComboBox fx:id="btnRemoveDC" prefHeight="25.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <ComboBox fx:id="btnCateDC" prefHeight="25.0" prefWidth="209.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cmbRemoveDC" prefHeight="25.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cmbCateDC" prefHeight="25.0" prefWidth="209.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
                      </children>
@@ -679,7 +687,7 @@
                               <Insets left="20.0" />
                            </GridPane.margin>
                         </TextArea>
-                        <Label style="-fx-font-weight: bold;" text="Defect Sysmtoms or Cause/Resolution">
+                        <Label text="Defect Sysmtoms or Cause/Resolution">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -701,7 +709,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label style="-fx-font-weight: bold;" text="4. Press the &quot;Update the Current Defect&quot; to save the changes made above." GridPane.columnSpan="3" GridPane.rowIndex="1">
+                        <Label text="4. Press the &quot;Update the Current Defect&quot; to save the changes made above." GridPane.columnSpan="3" GridPane.rowIndex="1">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -724,7 +732,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Label fx:id="lblStatusDC" style="-fx-font-weight: bold;" text="Save status" GridPane.halignment="CENTER">
+                        <Label fx:id="lblStatusDC" text="Save status" GridPane.halignment="CENTER">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -734,7 +742,7 @@
                         </Label>
                         <FlowPane alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="381.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER">
                            <children>
-                              <Label style="-fx-font-weight: bold;" text="Fix">
+                              <Label text="Fix">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -764,7 +772,7 @@
                               <Font size="26.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="20.0" prefWidth="330.0" style="-fx-font-weight: bold;" text="1. Select the Project" textAlignment="CENTER" GridPane.rowIndex="1">
+                        <Label prefHeight="20.0" prefWidth="330.0" text="1. Select the Project" textAlignment="CENTER" GridPane.rowIndex="1">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -772,7 +780,7 @@
                               <Insets left="15.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label prefHeight="20.0" prefWidth="225.0" style="-fx-font-weight: bold;" text="2.a. Clear this Project's Defect Log" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                        <Label prefHeight="20.0" prefWidth="225.0" text="2.a. Clear this Project's Defect Log" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <font>
                               <Font size="14.0" />
                            </font>

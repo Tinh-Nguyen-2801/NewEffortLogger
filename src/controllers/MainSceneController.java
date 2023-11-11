@@ -1,5 +1,10 @@
 package controllers;
 
+import java.io.File;
+import java.util.Iterator;
+import java.util.Scanner;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -8,185 +13,333 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import model.LifeCycleStep;
 
 public class MainSceneController {
+	private String[] projectList;
+	private String[] categoryList;
+	private String[] planList;
+	private String[] deliverableList;
+	private String[] interuptionList;
+	private String[] defectCateList;
+	private LifeCycleStep[] stepList;
 
-    @FXML
-    private ComboBox<?> btnCateDC;
+	@FXML
+	public void initialize() {
+		loadDef();
+		initCombobox();
+	}
 
-    @FXML
-    private Button btnClearDC;
+	/**
+	 * Load the definition of the program
+	 */
+	private void loadDef() {
+		projectList = new String[10];
+		categoryList = new String[5];
+		planList = new String[10];
+		deliverableList = new String[10];
+		interuptionList = new String[10];
+		defectCateList = new String[15];
+		stepList = new LifeCycleStep[50];
 
-    @FXML
-    private Button btnClearEdit;
+		String line = "";
+		Scanner input = null;
+		try {
+			String filePath = new File("").getAbsolutePath();
+			File file = new File(filePath + "/src/data/ELDefinition.txt");
+			input = new Scanner(file);
 
-    @FXML
-    private Button btnCreateDC;
+			// Project List
+			line = input.nextLine();
+			String[] temp = line.split(";");
+			for (int i = 0; i < temp.length; i++) {
+				projectList[i] = temp[i].substring(temp[i].indexOf(',') + 1);
+			}
 
-    @FXML
-    private Button btnDefEC;
+			// Category List
+			line = input.nextLine();
+			temp = line.split(";");
+			for (int i = 0; i < temp.length; i++) {
+				categoryList[i] = temp[i].substring(temp[i].indexOf(',') + 1);
+			}
 
-    @FXML
-    private Button btnDefectEC;
+			// Plan List
+			line = input.nextLine();
+			temp = line.split(";");
+			for (int i = 0; i < temp.length; i++) {
+				planList[i] = temp[i].substring(temp[i].indexOf(',') + 1);
+			}
+			// Deliverable List
+			line = input.nextLine();
+			temp = line.split(";");
+			for (int i = 0; i < temp.length; i++) {
+				deliverableList[i] = temp[i].substring(temp[i].indexOf(',') + 1);
+			}
+			// Interruption List
+			line = input.nextLine();
+			temp = line.split(";");
+			for (int i = 0; i < temp.length; i++) {
+				interuptionList[i] = temp[i].substring(temp[i].indexOf(',') + 1);
+			}
+			// Defect List
+			line = input.nextLine();
+			temp = line.split(";");
+			for (int i = 0; i < temp.length; i++) {
+				defectCateList[i] = temp[i].substring(temp[i].indexOf(',') + 1);
+			}
+			int i = 0;
+			while (input.hasNextLine()) {
+				line = input.nextLine();
+				temp = line.split(",");
+				stepList[i] = new LifeCycleStep(Integer.parseInt(temp[0]), temp[1],
+						Integer.parseInt(temp[2]), Integer.parseInt(temp[3]),
+						Integer.parseInt(temp[4]));
+				i++;
+			}
 
-    @FXML
-    private Button btnDeleteDC;
+			input.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (input != null) {
+				input.close();
+			}
+		}
+	}
 
-    @FXML
-    private Button btnDeleteEdit;
+	private void initCombobox() {
+		cmbProjectEC.getItems().removeAll(cmbProjectEC.getItems());
+		cmbProjectEC.getItems().addAll(projectList);
+		cmbProjectEC.getSelectionModel().select(0);
 
-    @FXML
-    private Button btnECDC;
+		cmbCategoryEC.getItems().removeAll(cmbCategoryEC.getItems());
+		cmbCategoryEC.getItems().addAll(categoryList);
+		initComboEC(0);
+	}
 
-    @FXML
-    private Button btnEditEC;
+	@FXML
+	void selectPorjectEC(ActionEvent event) {
+		if (event.getSource() == cmbProjectEC) {
+			int index = cmbProjectEC.getSelectionModel().getSelectedIndex();
+			initComboEC(index);
+		} else if (event.getSource() == cmbStepEC) {
+			changeCateEC();
+		} else if (event.getSource() == cmbCategoryEC) {
+		} else if (event.getSource() == cmbDetailEC) {
+		}
+	}
 
-    @FXML
-    private Button btnLogsEC;
+	private void initComboEC(int index) {
+		cmbStepEC.getItems().removeAll(cmbStepEC.getItems());
+		for (LifeCycleStep step : stepList) {
+			if (step != null && step.getProjectID() == index + 1) {
+				cmbStepEC.getItems().add(step.getName());
+			}
+		}
+		cmbStepEC.getSelectionModel().select(0);
+	}
 
-    @FXML
-    private Button btnOpenDC;
+	private void changeCateEC() {
+		String name = cmbStepEC.getSelectionModel().getSelectedItem();
+		for (LifeCycleStep step : stepList) {
+			if (step != null && step.getName().equals(name)) {
+				cmbCategoryEC.getSelectionModel().select(step.getEffortCateID() - 1);
+				return;
+			}
+		}
+	}
 
-    @FXML
-    private ComboBox<?> btnRemoveDC;
+	@FXML
+	void clearEffortLog(ActionEvent event) {
 
-    @FXML
-    private Button btnSplitEdit;
+	}
 
-    @FXML
-    private Button btnStartEC;
+	@FXML
+	void backToECPage(ActionEvent event) {
+		tabEC.getContent().requestFocus();
+	}
 
-    @FXML
-    private Button btnStopEC;
+	@FXML
+	private ComboBox<String> cmbCateDC;
 
-    @FXML
-    private Button btnUpdateDC;
+	@FXML
+	private Button btnClearDC;
 
-    @FXML
-    private Button btnUpdateEdit;
+	@FXML
+	private Button btnClearEdit;
 
-    @FXML
-    private ComboBox<?> cmbCategoryEC;
+	@FXML
+	private Button btnCreateDC;
 
-    @FXML
-    private ComboBox<?> cmbCategoryEdit;
+	@FXML
+	private Button btnDefEC;
 
-    @FXML
-    private ComboBox<?> cmbDetailEC;
+	@FXML
+	private Button btnDefectEC;
 
-    @FXML
-    private ComboBox<?> cmbDetailEdit;
+	@FXML
+	private Button btnDeleteDC;
 
-    @FXML
-    private ComboBox<?> cmbEntryDC;
+	@FXML
+	private Button btnDeleteEdit;
 
-    @FXML
-    private ComboBox<?> cmbFixDC;
+	@FXML
+	private Button btnECDC;
 
-    @FXML
-    private ComboBox<?> cmbInjectDC;
+	@FXML
+	private Button btnEditEC;
 
-    @FXML
-    private ComboBox<?> cmbLogsEdit;
+	@FXML
+	private Button btnLogsEC;
 
-    @FXML
-    private ComboBox<?> cmbProjectDC;
+	@FXML
+	private Button btnOpenDC;
 
-    @FXML
-    private ComboBox<?> cmbProjectDL;
+	@FXML
+	private ComboBox<String> cmbRemoveDC;
 
-    @FXML
-    private ComboBox<?> cmbProjectEC;
+	@FXML
+	private Button btnSplitEdit;
 
-    @FXML
-    private ComboBox<?> cmbProjectEL;
+	@FXML
+	private Button btnStartEC;
 
-    @FXML
-    private ComboBox<?> cmbProjectEdit;
+	@FXML
+	private Button btnStopEC;
 
-    @FXML
-    private ComboBox<?> cmbStepEC;
+	@FXML
+	private Button btnUpdateDC;
 
-    @FXML
-    private ComboBox<?> cmbStepEdit;
+	@FXML
+	private Button btnUpdateEdit;
 
-    @FXML
-    private Label lblClockEC;
+	@FXML
+	private ComboBox<String> cmbCategoryEC;
 
-    @FXML
-    private Label lblCounterDC;
+	@FXML
+	private ComboBox<String> cmbCategoryEdit;
 
-    @FXML
-    private Label lblCounterEdit;
+	@FXML
+	private ComboBox<String> cmbDetailEC;
 
-    @FXML
-    private Label lblStatusDC;
+	@FXML
+	private ComboBox<String> cmbDetailEdit;
 
-    @FXML
-    private Label lblStatusEC;
+	@FXML
+	private ComboBox<String> cmbEntryDC;
 
-    @FXML
-    private Tab tabCycle;
+	@FXML
+	private ComboBox<String> cmbFixDC;
 
-    @FXML
-    private Tab tabDL;
+	@FXML
+	private ComboBox<String> cmbInjectDC;
 
-    @FXML
-    private Tab tabDef;
+	@FXML
+	private ComboBox<String> cmbLogsEdit;
 
-    @FXML
-    private Tab tabDefect;
+	@FXML
+	private ComboBox<String> cmbProjectDC;
 
-    @FXML
-    private Tab tabDefectCate;
+	@FXML
+	private ComboBox<String> cmbProjectDL;
 
-    @FXML
-    private Tab tabDeli;
+	@FXML
+	private ComboBox<String> cmbProjectEC;
 
-    @FXML
-    private Tab tabEC;
+	@FXML
+	private ComboBox<String> cmbProjectEL;
 
-    @FXML
-    private Tab tabEL;
+	@FXML
+	private ComboBox<String> cmbProjectEdit;
 
-    @FXML
-    private Tab tabEditEL;
+	@FXML
+	private ComboBox<String> cmbStepEC;
 
-    @FXML
-    private Tab tabInterrupt;
+	@FXML
+	private ComboBox<String> cmbStepEdit;
 
-    @FXML
-    private Tab tabPlan;
+	@FXML
+	private Label lblClockEC;
 
-    @FXML
-    private Tab tabProject;
+	@FXML
+	private Label lblCounterDC;
 
-    @FXML
-    private TableView<?> tblDefectLog;
+	@FXML
+	private Label lblDefEC;
 
-    @FXML
-    private TableView<?> tblEffortLog;
+	@FXML
+	private Label lblDefD;
 
-    @FXML
-    private TextField txtDateEdit;
+	@FXML
+	private Label lblCounterEdit;
 
-    @FXML
-    private Button txtECEdit;
+	@FXML
+	private Label lblStatusDC;
 
-    @FXML
-    private TextField txtNameDC;
+	@FXML
+	private Label lblStatusEC;
 
-    @FXML
-    private TextField txtNumDC;
+	@FXML
+	private Tab tabCycle;
 
-    @FXML
-    private TextField txtStartEdit;
+	@FXML
+	private Tab tabDL;
 
-    @FXML
-    private TextField txtStopEdit;
+	@FXML
+	private Tab tabDef;
 
-    @FXML
-    private TextArea txtSymptomDC;
+	@FXML
+	private Tab tabDefect;
+
+	@FXML
+	private Tab tabDefectCate;
+
+	@FXML
+	private Tab tabDeli;
+
+	@FXML
+	private Tab tabEC;
+
+	@FXML
+	private Tab tabEL;
+
+	@FXML
+	private Tab tabEditEL;
+
+	@FXML
+	private Tab tabInterrupt;
+
+	@FXML
+	private Tab tabPlan;
+
+	@FXML
+	private Tab tabProject;
+
+	@FXML
+	private TableView<?> tblDefectLog;
+
+	@FXML
+	private TableView<?> tblEffortLog;
+
+	@FXML
+	private TextField txtDateEdit;
+
+	@FXML
+	private Button txtECEdit;
+
+	@FXML
+	private TextField txtNameDC;
+
+	@FXML
+	private TextField txtNumDC;
+
+	@FXML
+	private TextField txtStartEdit;
+
+	@FXML
+	private TextField txtStopEdit;
+
+	@FXML
+	private TextArea txtSymptomDC;
 
 }
-
