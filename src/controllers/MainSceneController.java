@@ -1,11 +1,15 @@
 package controllers;
 
 import java.io.File;
-import java.util.Iterator;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -13,6 +17,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import model.LifeCycleStep;
 
 public class MainSceneController {
@@ -23,6 +28,9 @@ public class MainSceneController {
 	private String[] interuptionList;
 	private String[] defectCateList;
 	private LifeCycleStep[] stepList;
+	private boolean isActive;
+	private String startDateTime;
+	private String stopDateTime;
 
 	@FXML
 	public void initialize() {
@@ -41,6 +49,7 @@ public class MainSceneController {
 		interuptionList = new String[10];
 		defectCateList = new String[15];
 		stepList = new LifeCycleStep[50];
+		isActive = false;
 
 		String line = "";
 		Scanner input = null;
@@ -91,9 +100,8 @@ public class MainSceneController {
 			while (input.hasNextLine()) {
 				line = input.nextLine();
 				temp = line.split(",");
-				stepList[i] = new LifeCycleStep(Integer.parseInt(temp[0]), temp[1],
-						Integer.parseInt(temp[2]), Integer.parseInt(temp[3]),
-						Integer.parseInt(temp[4]));
+				stepList[i] = new LifeCycleStep(Integer.parseInt(temp[0]), temp[1], Integer.parseInt(temp[2]),
+						Integer.parseInt(temp[3]), Integer.parseInt(temp[4]));
 				i++;
 			}
 
@@ -125,6 +133,7 @@ public class MainSceneController {
 		} else if (event.getSource() == cmbStepEC) {
 			changeCateEC();
 		} else if (event.getSource() == cmbCategoryEC) {
+			changeDetailCmbEC();
 		} else if (event.getSource() == cmbDetailEC) {
 		}
 	}
@@ -149,9 +158,104 @@ public class MainSceneController {
 		}
 	}
 
-	@FXML
-	void clearEffortLog(ActionEvent event) {
+	private void changeDetailCmbEC() {
+		cmbDetailEC.getItems().removeAll(cmbDetailEC.getItems());
+		int index = cmbCategoryEC.getSelectionModel().getSelectedIndex();
+		String detail = cmbCategoryEC.getSelectionModel().getSelectedItem().toString();
+		lblDefD.setText(detail + ":");
+		switch (index) {
+		case 0: {
+			cmbDetailEC.getItems().addAll(planList);
+			break;
+		}
+		case 1: {
+			cmbDetailEC.getItems().addAll(deliverableList);
+			break;
+		}
+		case 2: {
+			cmbDetailEC.getItems().addAll(interuptionList);
+			break;
+		}
+		case 3: {
+			cmbDetailEC.getItems().addAll(defectCateList);
+			break;
+		}
+		case 4: {
+			TextInputDialog inputdialog = new TextInputDialog("Enter the detail here");
+			inputdialog.setContentText("Detail: ");
+			inputdialog.setHeaderText("Input Detail");
+			inputdialog.showAndWait();
+			String other = inputdialog.getEditor().getText();
+			cmbDetailEC.getItems().removeAll(cmbDetailEC.getItems());
+			cmbDetailEC.getItems().add(other);
+			break;
+		}
+		default:
+			cmbDetailEC.getItems().addAll(planList);
+			break;
+		}
+		cmbDetailEC.getSelectionModel().select(0);
+	}
 
+	@FXML
+	void btnHandlerEC(ActionEvent event) {
+		if (event.getSource() == btnStartEC) {
+			startActivity();
+		} else if (event.getSource() == btnStopEC) {
+			stopActivity();
+		} else if (event.getSource() == btnEditEC) {
+		} else if (event.getSource() == btnDefectEC) {
+		} else if (event.getSource() == btnDefEC) {
+		} else if (event.getSource() == btnLogsEC) {
+		}
+	}
+
+	private void startActivity() {
+		if (isActive) {
+			new Alert(Alert.AlertType.ERROR, "The clock is already running!").showAndWait();
+		} else {
+			isActive = true;
+			lblClockEC.setStyle("-fx-background-color: #00FF00 ");
+			lblClockEC.setText("Clock is running!");
+			LocalDateTime myDateObj = LocalDateTime.now();
+			DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm:ss");
+			startDateTime = myDateObj.format(myFormatObj);
+		}
+
+	}
+
+	private void stopActivity() {
+		isActive = false;
+		lblClockEC.setStyle("-fx-background-color: #FF0000 ");
+		lblClockEC.setText("Clock is stopped!");
+		LocalDateTime myDateObj = LocalDateTime.now();
+		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm:ss");
+		stopDateTime = myDateObj.format(myFormatObj);
+		String effortLog = "";
+		effortLog += startDateTime + ";";
+		effortLog += stopDateTime + ";";
+		effortLog += cmbProjectEC.getSelectionModel().getSelectedItem().toString() + ";";
+		effortLog += cmbStepEC.getSelectionModel().getSelectedItem().toString() + ";";
+		effortLog += cmbCategoryEC.getSelectionModel().getSelectedItem().toString() + ";";
+		effortLog += cmbDetailEC.getSelectionModel().getSelectedItem().toString();
+		FileWriter writer = null;
+		try {
+			String filePath = new File("").getAbsolutePath();
+			File file = new File(filePath + "/src/data/effortLogs.txt");
+			writer = new FileWriter(file, true);
+			writer.write(effortLog);
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (writer != null) {
+				try {
+					writer.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	@FXML
