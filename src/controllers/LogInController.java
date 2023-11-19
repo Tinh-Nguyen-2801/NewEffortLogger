@@ -164,7 +164,6 @@ public class LogInController {
 			Scene scene = new Scene(root);
 			Stage signUpStage = new Stage();
 			signUpStage.setScene(scene);
-			signUpStage.setResizable(false);
 			signUpStage.setTitle("Effort Logger Sign UP");
 			signUpStage.show();
 			final Stage currStage = (Stage) btnLogin.getScene().getWindow();
