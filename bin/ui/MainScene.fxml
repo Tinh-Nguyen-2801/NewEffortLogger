@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainSceneController">
+<TabPane fx:id="tabMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainSceneController">
   <tabs>
     <Tab fx:id="tabEC" closable="false" text="Effort Console">
          <content>
@@ -108,7 +108,7 @@
                         </FlowPane>
                         <FlowPane id="boldLabel" prefHeight="200.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                            <children>
-                              <Label fx:id="lblDefEC" text="Effort Category:">
+                              <Label text="Effort Category:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -121,7 +121,7 @@
                                     <Insets left="10.0" />
                                  </FlowPane.margin>
                               </ComboBox>
-                              <Label fx:id="lblDefD" text="Plans:">
+                              <Label fx:id="lblDetailEC" text="Plans:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -820,7 +820,7 @@
                      <content>
                         <TableView fx:id="tblEffortLog" prefHeight="450.0" prefWidth="689.0">
                           <columns>
-                            <TableColumn prefWidth="53.0" text="Number" />
+                            <TableColumn prefWidth="53.0" text="ID" />
                             <TableColumn minWidth="7.0" prefWidth="89.0" text="Date" />
                               <TableColumn prefWidth="67.0" text="Start" />
                               <TableColumn prefWidth="70.0" text="Stop" />
@@ -871,7 +871,7 @@
                      <content>
                         <TableView fx:id="tblDefectLog" prefHeight="450.0" prefWidth="689.0">
                            <columns>
-                              <TableColumn prefWidth="53.0" text="Number" />
+                              <TableColumn prefWidth="53.0" text="ID" />
                               <TableColumn minWidth="7.0" prefWidth="89.0" text="Name" />
                               <TableColumn prefWidth="198.0" text="Detail" />
                               <TableColumn text="Injected" />
@@ -927,6 +927,167 @@
               </tabs>
             </TabPane>
          </content></Tab>
-      <Tab fx:id="tabPlan" closable="false" text="Planning Poker" />
+      <Tab fx:id="tabPlan" closable="false" text="Planning Poker">
+         <content>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <FlowPane id="boldLabel" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                           <children>
+                              <Label text="Effort Category:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <FlowPane.margin>
+                                    <Insets left="45.0" />
+                                 </FlowPane.margin>
+                              </Label>
+                              <ComboBox fx:id="cmbCategoryPK" onAction="#selectPorjectPK" prefHeight="25.0" prefWidth="180.0">
+                                 <FlowPane.margin>
+                                    <Insets left="10.0" />
+                                 </FlowPane.margin>
+                              </ComboBox>
+                              <Label fx:id="lblDetailPK" text="Plans:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <FlowPane.margin>
+                                    <Insets left="20.0" />
+                                 </FlowPane.margin>
+                              </Label>
+                              <ComboBox fx:id="cmbDetailPK" onAction="#selectPorjectPK" prefHeight="26.0" prefWidth="252.0">
+                                 <FlowPane.margin>
+                                    <Insets left="20.0" />
+                                 </FlowPane.margin>
+                              </ComboBox>
+                           </children>
+                        </FlowPane>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2">
+                           <children>
+                              <Label text="Project:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <FlowPane.margin>
+                                    <Insets left="45.0" />
+                                 </FlowPane.margin>
+                              </Label>
+                              <ComboBox fx:id="cmbProjectPK" onAction="#selectPorjectPK" prefHeight="25.0" prefWidth="180.0">
+                                 <FlowPane.margin>
+                                    <Insets left="10.0" />
+                                 </FlowPane.margin>
+                              </ComboBox>
+                              <Label text="Life Cycle Step:">
+                                 <FlowPane.margin>
+                                    <Insets left="20.0" />
+                                 </FlowPane.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="cmbStepPK" onAction="#selectPorjectPK" prefHeight="25.0" prefWidth="238.0">
+                                 <FlowPane.margin>
+                                    <Insets left="20.0" />
+                                 </FlowPane.margin>
+                              </ComboBox>
+                           </children>
+                        </FlowPane>
+                        <FlowPane prefHeight="39.0" prefWidth="408.0" GridPane.rowIndex="2">
+                           <children>
+                              <Label text="Search">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <FlowPane.margin>
+                                    <Insets left="45.0" />
+                                 </FlowPane.margin>
+                              </Label>
+                              <TextField fx:id="txtSearchPK" onAction="#selectPorjectPK" prefHeight="26.0" prefWidth="231.0">
+                                 <FlowPane.margin>
+                                    <Insets left="45.0" />
+                                 </FlowPane.margin>
+                              </TextField>
+                           </children>
+                        </FlowPane>
+                        <FlowPane prefHeight="39.0" prefWidth="408.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <children>
+                              <Button fx:id="btnFilterPK" mnemonicParsing="false" onAction="#selectPorjectPK" prefHeight="30.0" prefWidth="162.0" text="Apply Filter">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnCalculatePK" mnemonicParsing="false" onAction="#selectPorjectPK" prefHeight="30.0" prefWidth="162.0" text="Calculate Story Point">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <FlowPane.margin>
+                                    <Insets left="45.0" />
+                                 </FlowPane.margin>
+                              </Button>
+                           </children>
+                        </FlowPane>
+                     </children>
+                  </GridPane>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                     <content>
+                        <TableView fx:id="tblEffortLogsPK" prefHeight="450.0" prefWidth="689.0">
+                           <columns>
+                              <TableColumn fx:id="colIDPK" prefWidth="53.0" text="ID" />
+                              <TableColumn fx:id="colDatePK" minWidth="7.0" prefWidth="89.0" text="Date" />
+                              <TableColumn fx:id="colStartPK" prefWidth="67.0" text="Start" />
+                              <TableColumn fx:id="colStopPK" prefWidth="70.0" text="Stop" />
+                              <TableColumn fx:id="colTimePK" prefWidth="98.0" text="Time" />
+                              <TableColumn fx:id="colStepPK" prefWidth="100.0" text="Life Cycle Step" />
+                              <TableColumn fx:id="colCatePK" prefWidth="110.0" text="Category" />
+                              <TableColumn fx:id="colDetailPK" maxWidth="1.7976931348623157E308" prefWidth="175.199951171875" text="Details" />
+                              <TableColumn fx:id="colSelectPK" maxWidth="1.7976931348623157E308" prefWidth="48.0" text="Select" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+                     <content>
+                        <TableView fx:id="tblDefectLog1" prefHeight="450.0" prefWidth="689.0">
+                           <columns>
+                              <TableColumn prefWidth="46.39999467134476" text="ID" />
+                              <TableColumn minWidth="7.0" prefWidth="91.99999618530273" text="Name" />
+                              <TableColumn prefWidth="198.0" text="Detail" />
+                              <TableColumn text="Injected" />
+                              <TableColumn prefWidth="66.0" text="Removed" />
+                              <TableColumn prefWidth="94.0" text="Category" />
+                              <TableColumn prefWidth="61.0" text="Status" />
+                              <TableColumn maxWidth="1.7976931348623157E308" prefWidth="120.79998779296875" text="Fix" />
+                              <TableColumn maxWidth="1.7976931348623157E308" prefWidth="48.0" text="Select" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </GridPane>
+         </content></Tab>
   </tabs>
 </TabPane>
