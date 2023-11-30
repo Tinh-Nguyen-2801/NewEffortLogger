@@ -1,2 +1,9 @@
-1;11-12-2023 12:29:53;11-12-2023 12:30:02;Business Project;Planning;Plans;Project Plan
-2;11-12-2023 14:02:21;11-12-2023 14:03:03;Business Project;Planning;Deliverables;Conceptual Design
+1;11-12-2023 12:29:53;11-12-2023 13:30:02;Business Project;Planning;Plans;Project Plan
+2;11-12-2023 14:02:21;11-12-2023 17:03:03;Business Project;Planning;Deliverables;Conceptual Design
+3;11-30-2023 08:40:45;11-30-2023 10:40:53;Business Project;Planning;Plans;Project Plan
+4;11-30-2023 09:16:02;11-30-2023 12:16:10;Development Project;Detailed Design Plan;Defect;Documentation
+5;11-30-2023 09:24:45;11-30-2023 13:24:51;Development Project;Detailed Design Plan;Deliverables;Test Case
+6;11-30-2023 09:26:47;11-30-2023 10:26:50;Business Project;Verifying;Defect;Interface
+7;11-30-2023 09:28:30;11-30-2023 15:28:41;Business Project;Planning;Plans;Project Plan
+9;11-30-2023 09:30:38;11-30-2023 09:30:40;Development Project;Requirements;Interruptions;Phone
+10;11-30-2023 09:34:08;11-30-2023 09:34:12;Development Project;Solution Implementation;Interruptions;Teammate
