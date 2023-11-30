@@ -315,7 +315,8 @@ public class MainSceneController {
 			searchEffortLogsPK();
 		} else if (event.getSource() == btnCalculatePK) {
 			double point = calculateStoryPoint();
-			new Alert(Alert.AlertType.INFORMATION, "Story point estimated: " + point,
+			new Alert(Alert.AlertType.INFORMATION,
+					"Story point estimated: " + String.format("%.2f", point),
 					ButtonType.YES).showAndWait();
 		}
 	}
