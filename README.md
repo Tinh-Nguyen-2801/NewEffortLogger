@@ -11,8 +11,8 @@ The group consists of 4 students:
 - Kiera Walker
 ## How to run?
 This project requires Java SE 20 and JavaFX SDK 20.
-You can download Java at: https://www.oracle.com/java/technologies/javase/jdk20-archive-downloads.html
-You can download JavaFX SDK at: https://gluonhq.com/products/javafx/
-How to run JavaFX with Eclipse: https://openjfx.io/openjfx-docs/
+- You can download Java at: https://www.oracle.com/java/technologies/javase/jdk20-archive-downloads.html
+- You can download JavaFX SDK at: https://gluonhq.com/products/javafx/
+- How to run JavaFX with Eclipse: https://openjfx.io/openjfx-docs/
 ## Project Report
 You can find the detail for the project here: https://docs.google.com/document/d/1KUOj9sHycgyg2ftLzQPJ_m_VEiXRavV5
