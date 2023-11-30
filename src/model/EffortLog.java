@@ -39,7 +39,7 @@ public class EffortLog {
 		select = new CheckBox();
 	}
 
-	public boolean isSelect() {
+	public boolean isSelected() {
 		return select.isSelected();
 	}
 

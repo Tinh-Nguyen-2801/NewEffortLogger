@@ -4,16 +4,17 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
@@ -40,16 +41,62 @@ public class MainSceneController {
 	private boolean isActive;
 	private String startDateTime;
 	private String stopDateTime;
+	private int effortIDMax;
 
 	@FXML
 	public void initialize() {
 		loadDef();
 		initCombobox(cmbProjectEC, cmbCategoryEC, cmbDetailEC, cmbStepEC);
+		initCombobox(cmbProjectEdit, cmbCategoryEdit, cmbDetailEdit, cmbStepEdit);
+		initComboProject(cmbProjectDC);
+		initComboProject(cmbProjectEL);
+		initComboProject(cmbProjectDL);
 		initCombobox(cmbProjectPK, cmbCategoryPK, cmbDetailPK, cmbStepPK);
-		initEffortLogsPK();
+		loadEffortLog("");
+		initEffortTablePK();
+		listEffortLogEdit(projectList[0]);
 	}
 
-	private void initEffortLogsPK() {
+	private void loadEffortLog(String project) {
+		effortIDMax = -1;
+		effortLogsList = new ArrayList<EffortLog>();
+		String line = "";
+		Scanner input = null;
+		try {
+			String filePath = new File("").getAbsolutePath();
+			File file = new File(filePath + "/src/data/effortLogs.txt");
+			input = new Scanner(file);
+			while (input.hasNextLine()) {
+				line = input.nextLine();
+				String temp[] = line.split(";");
+				String ID = temp[0].split(" ")[0];
+				int id = Integer.parseInt(ID);
+				if (effortIDMax < id) {
+					effortIDMax = id;
+				}
+				String _date = temp[1].split(" ")[0];
+				String _start = temp[1].split(" ")[1];
+				String _stop = temp[2].split(" ")[1];
+				String _project = temp[3];
+				String _step = temp[4];
+				String _cate = temp[5];
+				String _detail = temp[6];
+				EffortLog effort = new EffortLog(ID, _date, _start, _stop, _project,
+						_step, _cate, _detail);
+				if (project.equals("") || _project.equals(project))
+					effortLogsList.add(effort);
+			}
+			input.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (input != null) {
+				input.close();
+			}
+		}
+	}
+
+	private void initEffortTablePK() {
 		colIDPK.setCellValueFactory(new PropertyValueFactory<EffortLog, Integer>("ID"));
 		colDatePK
 				.setCellValueFactory(new PropertyValueFactory<EffortLog, String>("date"));
@@ -149,11 +196,8 @@ public class MainSceneController {
 
 	private void initCombobox(ComboBox<String> cmbProject, ComboBox<String> cmbCategory,
 			ComboBox<String> cmDdetail, ComboBox<String> cmbStep) {
-		cmbProject.getItems().removeAll(cmbProjectEC.getItems());
-		cmbProject.getItems().addAll(projectList);
-		cmbProject.getSelectionModel().select(0);
+		initComboProject(cmbProject);
 		initCombo(0, cmbStep);
-
 		cmbCategory.getItems().removeAll(cmbCategoryEC.getItems());
 		cmbCategory.getItems().addAll(categoryList);
 		cmbCategory.getSelectionModel().select(0);
@@ -161,6 +205,12 @@ public class MainSceneController {
 		cmDdetail.getItems().removeAll(cmbDetailEC.getItems());
 		cmDdetail.getItems().addAll(planList);
 		cmDdetail.getSelectionModel().select(0);
+	}
+
+	private void initComboProject(ComboBox<String> cmbProject) {
+		cmbProject.getItems().removeAll(cmbProjectEC.getItems());
+		cmbProject.getItems().addAll(projectList);
+		cmbProject.getSelectionModel().select(0);
 	}
 
 	@FXML
@@ -177,6 +227,81 @@ public class MainSceneController {
 	}
 
 	@FXML
+	void selectPorjectEdit(ActionEvent event) {
+		if (event.getSource() == cmbProjectEdit) {
+			String projectName = cmbProjectEdit.getSelectionModel().getSelectedItem()
+					.toString();
+			listEffortLogEdit(projectName);
+		} else if (event.getSource() == cmbLogsEdit) {
+			selectELtoEdit();
+		}
+	}
+
+	private void listEffortLogEdit(String projectName) {
+		ArrayList<String> effortLogs = new ArrayList<String>();
+		String line = "";
+		Scanner input = null;
+		try {
+			String filePath = new File("").getAbsolutePath();
+			File file = new File(filePath + "/src/data/effortLogs.txt");
+			input = new Scanner(file);
+			while (input.hasNextLine()) {
+				line = input.nextLine();
+				String _project = line.split(";")[3];
+				if (projectName.equals(_project))
+					effortLogs.add(line);
+			}
+			cmbLogsEdit.getSelectionModel().select(null);
+			cmbLogsEdit.getItems().removeAll(cmbLogsEdit.getItems());
+			cmbLogsEdit.getItems().addAll(effortLogs);
+			cmbLogsEdit.getSelectionModel().select(0);
+			input.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (input != null) {
+				input.close();
+			}
+		}
+	}
+
+	private void selectELtoEdit() {
+		if (cmbLogsEdit.getSelectionModel().getSelectedItem() == null) {
+			return;
+		}
+		String log = cmbLogsEdit.getSelectionModel().getSelectedItem().toString();
+		String selectID = log.split(";")[0];
+		EffortLog temp = null;
+		for (EffortLog curr : effortLogsList) {
+			if (curr.getID().equals(selectID)) {
+				temp = curr;
+				break;
+			}
+		}
+		txtDateEdit.setText(temp.getDate());
+		txtStartEdit.setText(temp.getStartTime());
+		txtStopEdit.setText(temp.getStopTime());
+		initCombo(cmbProjectEdit.getSelectionModel().getSelectedIndex(), cmbStepEdit);
+		cmbStepEdit.getSelectionModel().select(temp.getStepName());
+
+		String cate = temp.getCateName();
+		cmbCategoryEdit.getSelectionModel().select(cate);
+		cmbDetailEdit.getItems().removeAll(cmbDetailEdit.getItems());
+		if (cate.equals("Plans")) {
+			cmbDetailEdit.getItems().addAll(planList);
+		} else if (cate.equals("Deliverables")) {
+			cmbDetailEdit.getItems().addAll(deliverableList);
+		} else if (cate.equals("Defect")) {
+			cmbDetailEdit.getItems().addAll(defectCateList);
+		} else if (cate.equals("Interruptions")) {
+			cmbDetailEdit.getItems().addAll(interuptionList);
+		} else if (cate.equals("Others")) {
+			cmbDetailEdit.getItems().add(temp.getDetailName());
+		}
+		cmbDetailEdit.getSelectionModel().select(temp.getDetailName());
+	}
+
+	@FXML
 	void selectPorjectPK(ActionEvent event) {
 		if (event.getSource() == cmbProjectPK) {
 			int index = cmbProjectPK.getSelectionModel().getSelectedIndex();
@@ -188,11 +313,33 @@ public class MainSceneController {
 		} else if (event.getSource() == cmbDetailPK) {
 		} else if (event.getSource() == btnFilterPK) {
 			searchEffortLogsPK();
+		} else if (event.getSource() == btnCalculatePK) {
+			double point = calculateStoryPoint();
+			new Alert(Alert.AlertType.INFORMATION, "Story point estimated: " + point,
+					ButtonType.YES).showAndWait();
 		}
 	}
 
+	private double calculateStoryPoint() {
+		double sum = 0;
+		int count = 0;
+		ObservableList<EffortLog> list = tblEffortLogsPK.getItems();
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).isSelected()) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+				LocalTime time = LocalTime.parse(list.get(i).getTimeElapse(), formatter);
+				double elapse = time.getHour() + time.getMinute() / 60.0
+						+ time.getSecond() / 3600.0;
+				sum += elapse;
+				count++;
+			}
+		}
+		return sum / count;
+
+	}
+
 	private void searchEffortLogsPK() {
-		effortLogsList = new ArrayList<EffortLog>();
+		ArrayList<EffortLog> tempList = new ArrayList<EffortLog>();
 		String searchProject = cmbProjectPK.getSelectionModel().getSelectedItem()
 				.toString();
 //		String searchStep = cmbStepPK.getSelectionModel().getSelectedItem().toString();
@@ -200,40 +347,13 @@ public class MainSceneController {
 //				.toString();
 //		String searchDetail = cmbDetailPK.getSelectionModel().getSelectedItem()
 //				.toString();
-		String line = "";
-		Scanner input = null;
-		try {
-			String filePath = new File("").getAbsolutePath();
-			File file = new File(filePath + "/src/data/effortLogs.txt");
-			input = new Scanner(file);
-			while (input.hasNextLine()) {
-				line = input.nextLine();
-				String temp[] = line.split(";");
-				String ID = temp[0].split(" ")[0];
-				String _date = temp[1].split(" ")[0];
-				String _start = temp[1].split(" ")[1];
-				String _stop = temp[2].split(" ")[1];
-				String _project = temp[3];
-				String _step = temp[4];
-				String _cate = temp[5];
-				String _detail = temp[6];
-				EffortLog effort = new EffortLog(ID, _date, _start, _stop, _project,
-						_step, _cate, _detail);
-				if (_project.equals(searchProject)) {
-					effortLogsList.add(effort);
-				}
-			}
-			input.close();
-			final ObservableList<EffortLog> tableList = FXCollections
-					.observableList(effortLogsList);
-			tblEffortLogsPK.setItems(tableList);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (input != null) {
-				input.close();
+		for (EffortLog effortLog : effortLogsList) {
+			if (effortLog.getProjectName().equals(searchProject)) {
+				tempList.add(effortLog);
 			}
 		}
+		tblEffortLogsPK.getItems().removeAll(tblEffortLogsPK.getItems());
+		tblEffortLogsPK.getItems().addAll(tempList);
 	}
 
 	private void initCombo(int index, ComboBox<String> cmbStep) {
@@ -333,6 +453,10 @@ public class MainSceneController {
 	}
 
 	private void stopActivity() {
+		if (!isActive) {
+			new Alert(Alert.AlertType.ERROR, "The clock is not running!").showAndWait();
+			return;
+		}
 		isActive = false;
 		lblClockEC.setStyle("-fx-background-color: #FF0000 ");
 		lblClockEC.setText("Clock is stopped!");
@@ -341,12 +465,25 @@ public class MainSceneController {
 				.ofPattern("MM-dd-yyyy HH:mm:ss");
 		stopDateTime = myDateObj.format(myFormatObj);
 		String effortLog = "";
+		effortIDMax++;
+
+		String date = startDateTime.split(" ")[0];
+		String startTime = startDateTime.split(" ")[1];
+		String stopTime = stopDateTime.split(" ")[1];
+		String projectName = cmbProjectEC.getSelectionModel().getSelectedItem()
+				.toString();
+		String step = cmbStepEC.getSelectionModel().getSelectedItem().toString();
+		String category = cmbCategoryEC.getSelectionModel().getSelectedItem().toString();
+		String detail = cmbDetailEC.getSelectionModel().getSelectedItem().toString();
+
+		effortLog += effortIDMax + ";";
 		effortLog += startDateTime + ";";
 		effortLog += stopDateTime + ";";
-		effortLog += cmbProjectEC.getSelectionModel().getSelectedItem().toString() + ";";
-		effortLog += cmbStepEC.getSelectionModel().getSelectedItem().toString() + ";";
-		effortLog += cmbCategoryEC.getSelectionModel().getSelectedItem().toString() + ";";
-		effortLog += cmbDetailEC.getSelectionModel().getSelectedItem().toString() + "\n";
+		effortLog += projectName + ";";
+		effortLog += step + ";";
+		effortLog += category + ";";
+		effortLog += detail + "\n";
+
 		FileWriter writer = null;
 		try {
 			lblStatusEC.setText("This activity stopped at: " + stopDateTime);
@@ -357,6 +494,9 @@ public class MainSceneController {
 			writer = new FileWriter(file, true);
 			writer.write(effortLog);
 			writer.close();
+			EffortLog newEL = new EffortLog(effortIDMax + "", date, startTime, stopTime,
+					projectName, step, category, detail);
+			effortLogsList.add(newEL);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -368,11 +508,6 @@ public class MainSceneController {
 				}
 			}
 		}
-	}
-
-	@FXML
-	void backToECPage(ActionEvent event) {
-		tabEC.getContent().requestFocus();
 	}
 
 	@FXML
@@ -445,6 +580,8 @@ public class MainSceneController {
 	private Label lblClockEC;
 	@FXML
 	private Label lblCounterDC;
+	@FXML
+	private Label lblEditSave;
 	@FXML
 	private Label lblDetailEC;
 	@FXML
